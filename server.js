@@ -3,7 +3,8 @@ const server = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   res.end('Hello Server');
   if(req.method=="POST"){
-    console.log("post request received")
+   // console.log("post request received")
+   res.end("Post Request")
     let data=""
     req.on("data",(chunk)=>{
         data+=chunk.toString()
