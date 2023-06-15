@@ -4,13 +4,12 @@ const server = http.createServer((req, res) => {
   console.log(req.method)
   res.end('Hello Server');
   if(req.method=="POST"){
-console.log("post request received")
+    console.log("post request received")
+    let data=""
+    req.on("data",(chunk)=>{
+        data+=chunk.toString()
+    })
   }
-//    res.end("Post Request")
-//     let data=""
-//     req.on("data",(chunk)=>{
-//         data+=chunk.toString()
-//     })
 
 //     req.on("end",()=>{
 //         try{
