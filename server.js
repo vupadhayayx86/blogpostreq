@@ -33,6 +33,7 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
+  console.log(req.method)
   if (req.method === 'POST' && req.url === '/') {
     let data = '';
 
