@@ -33,29 +33,35 @@
 const http = require('http');
 
 const server = http.createServer((req, res) => {
-  console.log(req.method)
-  if (req.method === 'POST' && req.url === '/') {
-    let data = '';
-
-    req.on('data', chunk => {
-      data += chunk;
-    });
-
-    req.on('end', () => {
-      const parsedData = JSON.parse(data);
-
-      // Display the sent values
-      console.log('Data:', parsedData);
-
-      // Send a response back
-      res.setHeader('Content-Type', 'application/json');
-      res.end(JSON.stringify({ message: 'Data received successfully!' }));
-    });
-  } else {
-    // Handle invalid routes
-    res.statusCode = 404;
-    res.end('Not Found');
+  let data={
+    name:"Vishal",
+    age:22
   }
+  let data1={
+    name:"Lala",
+    age:32
+  }
+  if(req.method=="GET"){
+    res.writeHead(200,{"Content-Type":"application/json"})
+    res.end(JSON.stringify(data))
+  }
+
+  if(req.method=="POST"){
+    res.writeHead(200,{"Content-Type":"application/json"})
+    let sdata=""
+    req.on("data",(chunk)=>{
+      sdata+=chunk
+    })
+    req.on("end",()=>{
+      const parsedData=JSON.parse(sdata)
+      console.log(parsedData)
+    })
+   
+    res.end(JSON.stringify({ message: 'Data received successfully!' }));
+  //  res.end()
+  }
+
+  
 });
 
 // Start the server
